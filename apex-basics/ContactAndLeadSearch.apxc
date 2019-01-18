@@ -1,0 +1,29 @@
+public class ContactAndLeadSearch {
+	// Public method
+    public static List<List<sObject>> searchContactsAndLeads (String searchTerm) {
+        String searchQuery = 'FIND \'' + searchTerm + '\' IN NAME FIELDS RETURNING Lead(FirstName,LastName), Contact(FirstName,LastName )';
+        List<List<sObject>> searchList = search.query(searchQuery);
+        	System.debug(searchList);
+            return searchList;
+    }
+}
+
+
+
+// / DEBUG ANONYMOUS //////
+
+// List<List<sObject>> searchContactLead = ContactAndLeadSearch.searchContactsAndLeads('Smith');
+
+// List<Lead> leadList = New List<Lead>();
+// List<Contact> contList = New List<Contact>();
+
+// leadList = ((List<Lead>)searchContactLead[0]);
+// contList = ((List<Contact>)searchContactLead[1]);
+
+// for(Lead a:leadList)
+// {
+// System.debug('Found following Leads ' + a.FirstName + ' ' + a.LastName);
+// }
+// for(Contact cts:contList){
+// System.debug('Found following Contacts ' + cts.FirstName + ' ' + cts.LastName);
+// }
